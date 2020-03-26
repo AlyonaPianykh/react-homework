@@ -26,6 +26,15 @@ export class Form extends Component {
     return null;
   }
 
+
+  onReset = () => {
+    // todo: имплементнуть функцию скидывания значений, введеных пользователем
+    this.setState({ // зануляем значения в стейте, чтоб сбросить формочку
+      title: '',
+      text: ''
+    });
+  };
+
   onLabelChange = e => {
     const { id } = e.target;
     this.setState({
@@ -56,7 +65,7 @@ export class Form extends Component {
       <div className={CN}>
         <h2>Create new Post</h2>
         <div className="form-group">
-          <label for="title" className="input-group-text">Enter post title:</label>
+          <label form="title" className="input-group-text">Enter post title:</label>
           <input
             className="form-control"
             type="text"
@@ -66,7 +75,7 @@ export class Form extends Component {
           />
         </div>
         <div className="form-group">
-          <label for="text" className="input-group-text">Enter post text:</label>
+          <label form="text" className="input-group-text">Enter post text:</label>
           <input
             className="form-control"
             name="text-input"
@@ -76,7 +85,23 @@ export class Form extends Component {
             value={this.state.text}
           />
         </div>
-        <Button className="btn-outline-secondary" onClick={this.onSubmit} label="Add post"/>
+        <Button className={`btn-outline-secondary  ${ !this.state.title.trim() && !this.state.text.trim() ? "mytooltip" : " "}`}
+                isDisabled={ !this.state.title.trim() && !this.state.text.trim() }
+                onClick={this.onReset}
+                label="Reset"
+        />
+
+        {/* ToDo: добавить кнопку для скидывания введеных пользователем значений */}
+        {/* ToDo: на кнопке должно быть написано Reset */}
+        {/* ToDo: в onClick кнопки прокинуть метод класса onReset (объявлен в строке 29) */}
+
+        {/* ToDo: прокинуть в строке 86 пропсу isDisabled которая равна true если в стейте пустые строки для title и text */}
+
+        <Button className={`btn-outline-secondary  ${ !this.state.title.trim() || !this.state.text.trim() ? "mytooltip" : " "}`}
+                isDisabled={ !this.state.title.trim() || !this.state.text.trim() }
+                onClick={this.onSubmit}
+                label="Add post"
+        />
       </div>
     );
   }

@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
 import {Post} from './components/Post/Post';
 import {Button} from './components/Button/Button';
-import {allPosts, sortingTypes} from './constants';
+import {allPosts} from './constants';
 import {SortingContext, ThemeContext, UserContext} from './context';
 import Header from './components/Header/Header';
-import {BtnMenu} from './components/BtnMenu/BtnMenu';
 import {PostsList} from './components/PostsList/PostsList';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import {Form} from './components/Form/Form';
 import {Input} from './components/Input/Input';
-import {SortingOptionsPanel} from './components/SortingOptionsPanel/SortingOptionsPanel';
-
+import { SortingOptionsPanel} from "./components/SortingOptionsPanel/SortingOptionsPanel";
 import './App.scss';
+import AddUserForm from './components/AddUserForm/AddUserForm';
 
 class App extends Component {
     constructor(props) {
@@ -19,7 +18,8 @@ class App extends Component {
         this.state = {
             inputValue: '',
             selectedPostId: allPosts[0].id,
-            isPostHidden: false
+            isPostHidden: false,
+            usersList: []
         };
     }
 
@@ -36,31 +36,42 @@ class App extends Component {
         });
     };
 
-
     onPostSelect = postId => {
         this.setState({
             selectedPostId: postId
         });
     };
+    addUser = (newUser) => {
+        const { usersList } = this.state;
+
+        this.setState({
+            usersList: [...usersList, newUser]
+        })
+    };
 
     render() {
+        // console.log(this.selectedPostId);
         return (
             <SortingContext.Consumer>
                 {sortConfig => {
-                    const {sortType, onSortingChange, posts, addPost} = sortConfig;
+                    const {posts, addPost} = sortConfig;
 
                     const {selectedPostId} = this.state;
                     const neededIndex = posts.findIndex(
                         item => item.id === selectedPostId
                     );
-
                     return (
                         <ThemeContext.Consumer>
                             {value => {
-                                console.log(value); // достаем значение темы из контекста и используем ниже в className
+                                // console.log(value);
+                                // достаем значение темы из контекста и используем ниже в className
                                 return (
                                     <div className={`App ${value}`}>
                                         <Header/>
+
+                                        {/* todo: перенести этот JSX в файл components/SortingOptionsPanel/SortingOptionsPanel.js */}
+
+                                        {/* todo: перенести этот JSX в файл components/SortingOptionsPanel/SortingOptionsPanel.js (конец)*/}
 
                                         {/* todo: проверить что импорт и использование SortingOptionsPanel не ламает функционала*/}
                                         <SortingOptionsPanel/>
@@ -70,8 +81,8 @@ class App extends Component {
                                             <div>
                                                 <Button label="HIDE POST!" onClick={this.hidePost}/>
                                                 {/* todo: добавить в props PostsList пропертю selectedPostId */}
-                                                {/* todo: в selectedPostId  положить selectedPostId из стейта (объявлено в строке 61)+++ */}
-                                                <PostsList posts={posts} selectedPostId={selectedPostId}
+                                                {/* todo: в selectedPostId  положить selectedPostId из стейта (объявлено в строке 61) */}
+                                                <PostsList selectedPostId={selectedPostId} posts={posts}
                                                            onPostSelect={this.onPostSelect}/>
                                             </div>
                                             <ErrorBoundary>
@@ -92,6 +103,15 @@ class App extends Component {
                                             <p>{this.state.inputValue}</p>
                                         </div>
 
+                                        <div>
+                                            {
+                                                this.state.usersList.map((user) => {
+                                                    return <div key={user.id}>{`${user.name} ${user.lastName}`}</div>
+                                                })
+                                            }
+                                        </div>
+                                        <AddUserForm addUser={this.addUser}/>
+
                                         <UserContext.Consumer>
                                             {({user}) => (
                                                 <Form
@@ -106,7 +126,6 @@ class App extends Component {
                                                 posts.map((post) => {
                                                     return (
                                                         <Post post={post} key={post.id}/>
-
                                                     );
                                                 })
                                             }
