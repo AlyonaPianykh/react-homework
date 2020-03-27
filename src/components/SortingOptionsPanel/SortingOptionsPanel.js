@@ -1,4 +1,8 @@
 import React from 'react';
+import {BtnMenu} from "../BtnMenu/BtnMenu";
+import {sortingTypes} from "../../constants";
+import {SortingContext} from "../../context"
+import {Button} from "../Button/Button";
   // Task 1
 //    todo: создать здесь функциональную компоненту SortingOptionsPanel
 //     она должна возвращать JSX из файла App.js строки 74-92
@@ -13,9 +17,47 @@ import React from 'react';
 //   todo: достать из SortingContext переменную sortType и передать ее как props под названием selectedSortType в компоненту BtnMenu
 
 export const SortingOptionsPanel = () => {
+  const renderButton = (label, sortType, onClick, sortCondition) => {
+    return (
+      <Button
+        className={`btn-outline-primary ${sortType === sortCondition ? 'btn-styled' : ''}`}
+        label={label}
+        onClick={() => {
+          onClick(sortCondition);
+        }}
+      />
+    );
+  };
   return (
-    <div>
-      Sorting panel must be here
-    </div>
+    <SortingContext.Consumer>
+      {sortConfig => {
+        const { sortType, onSortingChange } = sortConfig;
+        return (
+          <div>
+            <div className="sorting-options d-flex justify-items-center align-items-center">
+              <label className="custom-label">Sorting options:</label>
+              <BtnMenu
+                options={Object.keys(sortingTypes)}
+                onSortingChange={onSortingChange}
+                selectedSortType={sortType}
+              />
+              {renderButton(
+                'Sort by author',
+                sortType,
+                onSortingChange,
+                sortingTypes.BY_AUTHOR
+              )}
+              {renderButton(
+                'Sort by date',
+                sortType,
+                onSortingChange,
+                sortingTypes.BY_DATE
+              )}
+            </div>
+          </div>
+          )
+      }}
+    </SortingContext.Consumer>
   );
+
 };

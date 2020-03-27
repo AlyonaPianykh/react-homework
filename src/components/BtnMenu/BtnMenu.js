@@ -8,7 +8,7 @@ const CN = 'btn-menu'; // todo: Обратите внимание, это гла
 export const BtnMenu = props => {
   // Task 3
 //   todo: достать из props пропертю selectedSortType которая прилетит из SortingOptionsPanel
-  const { options, onSortingChange } = props;
+  const { options, onSortingChange, selectedSortType } = props;
   const [isOpenChange, setIsOpenChange] = useState(false);
 
 
@@ -27,8 +27,9 @@ export const BtnMenu = props => {
       <ul className="change-menu list-group">
         {isOpenChange && !!options.length && options.map(item => {
           // todo: добавить класс active если item равно выбраному в текущий момент виду сортировки (selectedSortType)
-            return (
-              <li key={item} id={item} className={`list-group-item`} onClick={onLabelClick}>
+
+               return (
+              <li key={item} id={item} className={`list-group-item ${item === selectedSortType ? "active" : ""}`} onClick={onLabelClick}>
                 {sortingTitle[item]}
               </li>
             );
