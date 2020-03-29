@@ -1,8 +1,8 @@
 import React, {Component, createRef} from 'react';
 import uniqId from 'uniqid';
 import {Button} from '../Button/Button';
-import './AddUserForm.scss';
 import ImgWarning from './../../assets/warning2.png'
+import './AddUserForm.scss';
 
 const CN = 'user-form';
 
@@ -13,8 +13,8 @@ class AddUserForm extends Component {
         // this.userLastNameRef = createRef();
         this.state = {
             currentError: '',
-            errorUserName: ' ',
-            errorUserLastName: ' '
+            errorUserName: '',
+            errorUserLastName: ''
         };
     }
 
