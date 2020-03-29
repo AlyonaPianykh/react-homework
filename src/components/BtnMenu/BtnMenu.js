@@ -27,9 +27,9 @@ export const BtnMenu = props => {
       <ul className="change-menu list-group">
         {isOpenChange && !!options.length && options.map(item => {
           // todo: добавить класс active если item равно выбраному в текущий момент виду сортировки (selectedSortType)++
-            const ClA = (item === selectedSortType ? 'active' : '');
+            const cla = (item === selectedSortType ? 'active' : '');
             return (
-              <li key={item} id={item} className={`list-group-item ${ClA}`} onClick={onLabelClick}>
+              <li key={item} id={item} className={`list-group-item ${cla}`} onClick={onLabelClick}>
                 {sortingTitle[item]}
               </li>
             );
