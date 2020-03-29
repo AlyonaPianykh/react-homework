@@ -30,6 +30,7 @@ export const PostImage = props => {
               label={!isHidden ? "Hide img" : "Show img"}
               onClick={onClickHandler}
             />
+           {/*<img src={ImageCat} alt="my-cat"/>*/}
           </div>
         );
       }}

@@ -9,6 +9,11 @@
     }
   }
 
+  &.disabled {
+    // todo добавить курсор not-allowed
+    cursor: not-allowed;
+  }
+
   &.btn-primary {
     &.focus,
     &:focus {
@@ -19,4 +24,35 @@
   &.btn-styled {
     background: lightpink !important;
   }
+}
+.toolt {
+  //display: inline;
+  position: relative;
+}
+.toolt:hover:after{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background: #444;
+  border-radius: 8px;
+  color: #fff;
+  content: attr(title);
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: -5px auto;
+  font-size: 16px;
+  padding: 8px;
+  width: 80px;
+}
+.toolt:hover:before{
+  border: solid;
+  border-color: #444 transparent;
+  border-width: 12px 6px 0 6px;
+  content: "";
+  left: 45%;
+  bottom: 40px;
+  position: absolute;
 }
