@@ -43,7 +43,7 @@ export class Post extends PureComponent {
     console.log("renderPost:" + this.props.post.id);
 
     return (
-      <div className={`post card ${styled ? 'styled' : '' }`}>
+      <div className={`post card ${styled ? 'styled' : '' } `}>
         <div className="card-img-top">
           <PostImage src={imgPost}/> {/* используем другую компоненту, чтоб создать композицию */}
         </div>

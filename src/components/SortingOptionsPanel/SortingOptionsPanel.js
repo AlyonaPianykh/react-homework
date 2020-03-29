@@ -1,5 +1,11 @@
 import React from 'react';
-  // Task 1
+import {BtnMenu} from "../BtnMenu/BtnMenu";
+import {sortingTypes} from "../../constants";
+import {SortingContext} from "../../context";
+import {Button} from "../Button/Button";
+import './SortingOptionalPanel.scss'
+
+// Task 1
 //    todo: создать здесь функциональную компоненту SortingOptionsPanel
 //     она должна возвращать JSX из файла App.js строки 74-92
 //     сделать импорт константы sortingTypes
@@ -13,9 +19,46 @@ import React from 'react';
 //   todo: достать из SortingContext переменную sortType и передать ее как props под названием selectedSortType в компоненту BtnMenu
 
 export const SortingOptionsPanel = () => {
+    const renderButton = (label, sortType, onClick, sortCondition) => {
+        return (
+            <Button
+                className={`btn-outline-primary ${sortType === sortCondition ? 'btn-styled' : ''}`}
+                label={label}
+                onClick={() => {
+                    onClick(sortCondition);
+                }}
+            />
+        );
+    };
+
   return (
-    <div>
-      Sorting panel must be here
-    </div>
+      <SortingContext.Consumer>
+          {
+              ({  sortType, onSortingChange, posts, addPost }) => {
+                  return (
+                      <div className="sorting-panel sorting-options d-flex justify-items-center align-items-center">
+                          <label className="custom-label">Sorting options:</label>
+                          <BtnMenu
+                              options={Object.keys(sortingTypes)}
+                              selectedSortType={sortType}
+                              onSortingChange={onSortingChange}
+                          />
+                          {renderButton(
+                              'Sort by author',
+                              sortType,
+                              onSortingChange,
+                              sortingTypes.BY_AUTHOR
+                          )}
+                          {renderButton(
+                              'Sort by date',
+                              sortType,
+                              onSortingChange,
+                              sortingTypes.BY_DATE
+                          )}
+                      </div>
+                  )
+              }
+          }
+      </SortingContext.Consumer>
   );
 };

@@ -22,7 +22,7 @@ export const allPosts = [
   }, {
     id: 'frjegkhre',
     title:"apple2",
-    authorName: 'Maria Negrych',
+    authorName: 'Stas',
     data: '02/13/2020',
     mood: 'почувається вмотивовано',
     imgAuthor: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg',
