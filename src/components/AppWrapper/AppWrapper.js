@@ -19,7 +19,7 @@ import { PostsPage } from '../../containers/PostsPage';
 import { allLinks, allPosts, sortingTypes, user } from '../../constants';
 import { PostDetailsPage } from '../../containers/PostDetailsPage';
 import NotFound from '../../containers/NotFound/NotFound';
-import { UsersPage } from '../../containers/UsersPage/UsersPage';
+import { UsersPage } from '../../containers/UsersPage';
 
 export function AppWrapper(props) {
   const [userRole, setUserRole] = useState(user.role);
