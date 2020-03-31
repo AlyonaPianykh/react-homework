@@ -52,8 +52,9 @@ class App extends Component {
   };
 
   render() {
-    const { postsConfig } = this.props; // todo достать из props actions: {createPost}
+    const { postsConfig, actions: {createPost} } = this.props; // todo достать из props actions: {createPost}
     const { posts } = postsConfig;
+    console.log(createPost);
 
     const { selectedPostId } = this.state;
     const neededIndex = posts.findIndex(item => item.id === selectedPostId);
@@ -89,7 +90,7 @@ class App extends Component {
               <UserContext.Consumer>
                 {({ user }) => (
                   <Form
-                    // addPost={addPost}  // todo использовать тут вместо {addPost} нашу созданую функцию createPost
+                    addPost={createPost}  // todo использовать тут вместо {addPost} нашу созданую функцию createPost
                     user={user}
                     post={posts[neededIndex]}
                   />

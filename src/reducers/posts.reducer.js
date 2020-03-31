@@ -2,7 +2,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import { allPosts, sortingTypes } from '../constants';
 
 // todo импортнуть ниже ваш новы тип экшена CREATE_POST
-import { SORT_BY } from '../action-types';
+import { SORT_BY, CREATE_POST } from '../action-types';
 
 const initialState = {
   sortType: sortingTypes.BY_DEFAULT,
@@ -36,9 +36,16 @@ export const postsReducer = (state = initialState, action) => {
     // todo раскоментировать и имплементнуть редюсер к этому экшн типу
     //    нужно копировать state.posts и добавить к копии новый элемент, который лежит в action.payload
     //    вернуть копию стейта с подмененным массивом posts
-    // case CREATE_POST: {
-    //
-    // }
+    case CREATE_POST: {
+        const { payload: post } = action;
+        let copy = cloneDeep(state.posts);
+        copy = [...copy, post];
+
+        return {
+          ...state,
+            posts: copy
+        };
+    }
     default:
       return state;
   }
