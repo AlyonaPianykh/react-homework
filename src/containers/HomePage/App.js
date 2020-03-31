@@ -52,7 +52,8 @@ class App extends Component {
   };
 
   render() {
-    const { postsConfig } = this.props; // todo достать из props actions: {createPost}
+    debugger
+    const { postsConfig, actions: {createPost} } = this.props; // todo достать из props actions: {createPost}
     const { posts } = postsConfig;
 
     const { selectedPostId } = this.state;
@@ -90,6 +91,7 @@ class App extends Component {
                 {({ user }) => (
                   <Form
                     // addPost={addPost}  // todo использовать тут вместо {addPost} нашу созданую функцию createPost
+                    addPost={createPost}
                     user={user}
                     post={posts[neededIndex]}
                   />
