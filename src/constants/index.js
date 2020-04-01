@@ -13,7 +13,7 @@ export const allPosts = [
   {
     id: 'fdsfs',
     title:"apple1",
-    authorName: 'Maria Negrych',
+    authorName: 'ZZZZ Master',
     data: '02/17/2020',
     mood: 'почувається натхненно',
     imgAuthor: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg',
@@ -53,20 +53,26 @@ export const allPosts = [
 export const allLinks = {
   admin: [
     {
-      label: 'home'
+      label: 'home',
+      to: '/home'
     }, {
-      label: 'posts'
+      label: 'posts',
+      to: '/posts'
     }, {
-      label: 'users'
+      label: 'users',
+      to: '/users'
     }, {
-      label: 'settings'
+      label: 'post preview',
+      to: '/post-preview'
     }
   ],
   user: [
     {
-      label: 'home'
+      label: 'home',
+      to: '/home'
     }, {
-      label: 'posts'
+      label: 'posts',
+      to: '/posts'
     }
   ]
 };

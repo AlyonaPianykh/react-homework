@@ -9,12 +9,15 @@ export const Button = props => {
     onClick,
     label = "Click me", // дефолтное значение = "Click me"
     className = "btn-primary"
+    // todo добавить пропсу isDisabled, значение которой по умолчанию должно быть false
   } = props;
 
   const onClickHandler = e => {
     onClick && onClick(e); // такая конструкция нужна, чтоб, если onClick в пропсах не прийдет, тут не выпала ошибка
   };
 
+  // todo в строке 23 если значение isDisabled равно true добавить класс "disabled"
+  //   после 26 строки добавить кнопке атрибут disabled который равен значению пропсы isDisabled
   return (
     <button
       className={`${CN} btn add-margin ${className}`}

@@ -30,6 +30,12 @@ export class Post extends PureComponent {
   //   return nextProps.post.id !== this.props.post.id;
   // }
 
+  onSelectHandler = () => {
+    const {onSelect, post: {id}} = this.props;
+
+    onSelect && onSelect(id)
+  };
+
   onToggleMeHandler = () => {
     this.setState({
       styled: !this.state.styled
@@ -43,7 +49,7 @@ export class Post extends PureComponent {
     console.log("renderPost:" + this.props.post.id);
 
     return (
-      <div className={`post card ${styled ? 'styled' : '' }`}>
+      <div className={`post card ${styled ? 'styled' : '' }`} onClick={this.onSelectHandler}>
         <div className="card-img-top">
           <PostImage src={imgPost}/> {/* используем другую компоненту, чтоб создать композицию */}
         </div>

@@ -9,6 +9,10 @@
     }
   }
 
+  &.disabled {
+    // todo добавить курсор not-allowed
+  }
+
   &.btn-primary {
     &.focus,
     &:focus {

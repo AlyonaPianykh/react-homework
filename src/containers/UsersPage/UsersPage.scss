@@ -1,0 +1,23 @@
+
+.users-page {
+  .pagination-item {
+    margin: 10px;
+    cursor: pointer;
+
+    &.active {
+      color: darkred;
+      font-weight: bold;
+    }
+  }
+
+  .pagination {
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .pages {
+      margin: 0 20px;
+    }
+  }
+}
